@@ -11,15 +11,18 @@ def fuel_required(module_mass: int) -> int:
     # divide by three
     # round down
     # and subtract 2.
-    fuel_req = int(module_mass)//3-2
+    fuel_req = max(0,int(module_mass)//3-2)
+    # account for fuel required to launch the required fuel
+    if fuel_req > 0:
+        fuel_req += fuel_required(fuel_req)
     return fuel_req
 
 def tests():
     # tests
     assert(fuel_required(12) == 2)
     assert(fuel_required(14) == 2)
-    assert(fuel_required(1969) == 654)
-    assert(fuel_required(100756) == 33583)
+    assert(fuel_required(1969) == 966)
+    assert(fuel_required(100756) == 50346)
     print("tests passed.")
 
 def solve(input):
