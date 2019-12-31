@@ -41,7 +41,7 @@ class SaveInstruction(Instruction):
 
     def execute(self, intcode, args):
         result_pos = args[0].address
-        inpt = int(intcode.stdinput.pop())
+        inpt = int(intcode.stdinput.pop(0))
         _logger.debug(f"store {inpt} from stdin at {result_pos}")
         intcode.memory[result_pos] = inpt
         return intcode.inst_ptr + self.len_parameters + 1
