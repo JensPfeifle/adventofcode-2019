@@ -41,6 +41,7 @@ class SaveInstruction(Instruction):
 
     def execute(self, intcode, args):
         result_pos = args[0].address
+        _logger.debug(f"try to read from stdin")
         inpt = int(intcode.stdinput.pop(0))
         _logger.debug(f"store {inpt} from stdin at {result_pos}")
         intcode.memory[result_pos] = inpt
