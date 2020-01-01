@@ -148,8 +148,9 @@ class HaltInstruction(Instruction):
 
 
 class IntCode:
-    def __init__(self, program):
+    def __init__(self, program, name="intcode computer"):
         self.program = program
+        self.name = name
         self.memory = program.copy()
         self.inst_ptr = 0
         self.halted = False
@@ -157,7 +158,7 @@ class IntCode:
         self.stdoutput = []
 
     def __repr__(self):
-        return str(self.memory)
+        return str(self.name)
 
     def _get_instruction(self, instruction_code: int):
         try:
