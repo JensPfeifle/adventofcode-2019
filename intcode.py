@@ -197,6 +197,15 @@ class IntCode:
         arguments = self._parse_arguemnts(instruction.len_parameters)
         self.inst_ptr = instruction.execute(intcode=self, args=arguments)
 
+    def run_to_output(self):
+        while not self.halted and not self.stdoutput:
+            self.step()
+        if self.halted:
+            return None
+        else:
+            assert len(self.stdoutput) == 1
+            return self.stdoutput.pop()
+
     def run_to_halt(self, output_to_console = True):
         result = []
         while True:
